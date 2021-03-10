@@ -47,7 +47,10 @@ defmodule Retro.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
-      {:wallaby, "~> 0.28.0", runtime: false, only: :test}
+      ###
+      {:wallaby, "~> 0.28.0", runtime: false, only: :test},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end
 
