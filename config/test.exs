@@ -12,11 +12,18 @@ config :retro, Retro.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
+config :retro, :sql_sandbox, true
+
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
 config :retro, RetroWeb.Endpoint,
   http: [port: 4002],
-  server: false
+  server: true
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :wallaby,
+  otp_app: :retro,
+  driver: Wallaby.Chrome,
+  screenshot_on_failure: true

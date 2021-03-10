@@ -47,6 +47,7 @@ defmodule Retro.MixProject do
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
       {:plug_cowboy, "~> 2.0"},
+      {:wallaby, "~> 0.28.0", runtime: false, only: :test}
     ]
   end
 
@@ -61,7 +62,19 @@ defmodule Retro.MixProject do
       setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: [
+        "assets.compile --quiet",
+        "ecto.create --quiet",
+        "ecto.migrate",
+        "test"
+      ],
+      "assets.compile": &compile_assets/1
     ]
+  end
+
+  defp compile_assets(_) do
+    Mix.shell().cmd("cd assets && ./node_modules/.bin/webpack --mode development",
+      quiet: true
+    )
   end
 end
