@@ -6,11 +6,28 @@ defmodule RetroWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket), do: Topics.subscribe()
+
     socket =
       socket
       |> assign(:topic, Topics.change_topic(%Topic{}))
       |> assign(:topics, Topics.list_topics())
 
     {:ok, socket}
+  end
+
+  @impl true
+  def handle_info({:topic_created, _topic}, socket) do
+    {:noreply, assign(socket, :topics, Topics.list_topics())}
+  end
+
+  @impl true
+  def handle_info({:topic_updated, _topic}, socket) do
+    {:noreply, assign(socket, :topics, Topics.list_topics())}
+  end
+
+  @impl true
+  def handle_info({:topic_deleted, _topic}, socket) do
+    {:noreply, assign(socket, :topics, Topics.list_topics())}
   end
 end

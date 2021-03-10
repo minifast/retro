@@ -66,7 +66,6 @@ defmodule RetroWeb.TopicListLiveTest do
       assert html =~ "<li id=\"topic-#{topic.id}\">#{topic.description}</li>"
     end
 
-    @tag :skip
     test "when no attributes are set for the changeset it shows an error", %{conn: conn} do
       {:ok, view, _html} =
         live_isolated(conn, Harness,
@@ -82,7 +81,7 @@ defmodule RetroWeb.TopicListLiveTest do
 
       assert view
              |> element("form")
-             |> render_submit(%{}) =~ "can\'t be blank"
+             |> render_submit(%{}) =~ "can&#39;t be blank"
     end
 
     test "when submitting valid changest adds a new topic", %{conn: conn} do
