@@ -6,7 +6,12 @@ defmodule Retro.Topics do
   alias Retro.Topics.Topic
 
   def list_topics do
-    Repo.all(Topic)
+    Repo.all(
+      from(
+        t in Topic,
+        order_by: [asc: fragment("lower(?)", t.description)]
+      )
+    )
   end
 
   def get_topic!(id), do: Repo.get!(Topic, id)
