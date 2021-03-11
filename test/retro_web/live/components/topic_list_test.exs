@@ -42,7 +42,6 @@ defmodule RetroWeb.TopicListLiveTest do
         )
 
       assert html =~ "class=\"topic-list\">"
-      # assert html =~ "id=\"topic-form-1\""
       assert html =~ "<textarea"
       assert html =~ "<button"
       refute html =~ "<li"
@@ -63,7 +62,7 @@ defmodule RetroWeb.TopicListLiveTest do
           }
         )
 
-      assert html =~ "<li id=\"topic-#{topic.id}\">#{topic.description}</li>"
+      assert html =~ "<tr id=\"topic-#{topic.id}\"><td>#{topic.description}</td><td>"
     end
 
     test "when no attributes are set for the changeset it shows an error", %{conn: conn} do
@@ -104,7 +103,6 @@ defmodule RetroWeb.TopicListLiveTest do
       new_topic = Topics.list_topics() |> List.last()
 
       assert new_topic.description == "sweet!"
-      # needs to render on page as well, need publishing
     end
   end
 end

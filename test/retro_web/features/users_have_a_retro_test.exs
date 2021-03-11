@@ -20,5 +20,16 @@ defmodule RetroWeb.UsersHaveARetro do
 
     session
     |> assert_has(Query.text("as were the donuts!"))
+    |> accept_confirm(fn s ->
+      click(s, Query.link("Delete", count: 2, at: 1))
+    end)
+
+    session
+    |> assert_has(Query.text("as were the donuts!"))
+    |> refute_has(Query.text("the bagels were incredible!"))
+
+    other_session
+    |> assert_has(Query.text("as were the donuts!"))
+    |> refute_has(Query.text("the bagels were incredible!"))
   end
 end

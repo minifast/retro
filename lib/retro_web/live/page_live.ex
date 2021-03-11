@@ -30,4 +30,19 @@ defmodule RetroWeb.PageLive do
   def handle_info({:topic_deleted, _topic}, socket) do
     {:noreply, assign(socket, :topics, Topics.list_topics())}
   end
+
+  @impl true
+  def handle_event("delete_topic", %{"topic-id" => topic_id}, socket) do
+    topic = Topics.get_topic!(topic_id)
+
+    case Topics.delete_topic(topic) do
+      {:ok, _topic} ->
+        {:noreply, socket}
+
+      {:error, %Ecto.Changeset{} = changeset} ->
+        {:noreply, assign(socket, :topic, changeset)}
+    end
+
+    {:noreply, socket}
+  end
 end

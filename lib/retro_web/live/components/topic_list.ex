@@ -13,11 +13,18 @@ defmodule RetroWeb.TopicList do
 
   defp render_list(assigns) do
     ~L"""
-    <ul class="topic-list">
-    <%= for topic <- @topics do %>
-      <li id="topic-<%= topic.id %>"><%= topic.description %></td></li>
-    <% end %>
-    </ul>
+    <table>
+      <tbody id="topic-list" class="topic-list">
+        <%= for topic <- @topics do %>
+          <tr id="topic-<%= topic.id %>">
+            <td><%= topic.description %></td>
+            <td>
+              <span><%= link gettext("Delete"), to: "#", phx_click: :delete_topic, phx_value_topic_id: topic.id, data: [confirm: gettext("Are you sure you want to delete \"%{description}\"?", description: topic.description)] %></span>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    <table>
     """
   end
 

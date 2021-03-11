@@ -1,8 +1,8 @@
 defmodule Retro.Topics do
   @moduledoc false
   import Ecto.Query, warn: false
-  alias Retro.Repo
 
+  alias Retro.Repo
   alias Retro.Topics.Topic
 
   def list_topics do
