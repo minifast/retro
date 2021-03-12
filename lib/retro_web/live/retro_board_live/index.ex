@@ -6,6 +6,8 @@ defmodule RetroWeb.RetroBoardLive.Index do
 
   @impl true
   def mount(_params, _session, socket) do
+    if connected?(socket), do: RetroBoards.subscribe()
+
     {:ok, assign(socket, :retro_boards, fetch_retro_boards())}
   end
 
@@ -30,6 +32,21 @@ defmodule RetroWeb.RetroBoardLive.Index do
     socket
     |> assign(:page_title, "Listing Retro Boards")
     |> assign(:retro_board, nil)
+  end
+
+  @impl true
+  def handle_info({:retro_board_created, _retro_board}, socket) do
+    {:noreply, assign(socket, :retro_boards, fetch_retro_boards())}
+  end
+
+  @impl true
+  def handle_info({:retro_board_updated, _retro_board}, socket) do
+    {:noreply, assign(socket, :retro_boards, fetch_retro_boards())}
+  end
+
+  @impl true
+  def handle_info({:retro_board_deleted, _retro_board}, socket) do
+    {:noreply, assign(socket, :retro_boards, fetch_retro_boards())}
   end
 
   @impl true

@@ -20,19 +20,38 @@ defmodule Retro.RetroBoards do
     %RetroBoard{}
     |> RetroBoard.changeset(attrs)
     |> Repo.insert()
+    |> broadcast(:retro_board_created)
   end
 
   def update_retro_board(%RetroBoard{} = retro_board, attrs) do
     retro_board
     |> RetroBoard.changeset(attrs)
     |> Repo.update()
+    |> broadcast(:retro_board_updated)
   end
 
   def delete_retro_board(%RetroBoard{} = retro_board) do
     Repo.delete(retro_board)
+    |> broadcast(:retro_board_deleted)
   end
 
   def change_retro_board(%RetroBoard{} = retro_board, attrs \\ %{}) do
     RetroBoard.changeset(retro_board, attrs)
+  end
+
+  def subscribe do
+    Phoenix.PubSub.subscribe(Retro.PubSub, "retro_boards")
+  end
+
+  defp broadcast({:error, _reason} = error, _event), do: error
+
+  defp broadcast({:ok, retro_board}, event) do
+    Phoenix.PubSub.broadcast(
+      Retro.PubSub,
+      "retro_boards",
+      {event, retro_board}
+    )
+
+    {:ok, retro_board}
   end
 end
