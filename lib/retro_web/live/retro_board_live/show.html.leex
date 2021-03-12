@@ -1,0 +1,20 @@
+<h1>Show Retro Board</h1>
+
+<%= if @live_action in [:edit] do %>
+  <%= live_modal @socket, RetroWeb.RetroBoardLive.FormComponent,
+    id: @retro_board.id,
+    title: @page_title,
+    action: @live_action,
+    retro_board: @retro_board,
+    return_to: Routes.retro_board_show_path(@socket, :show, @retro_board) %>
+<% end %>
+
+<ul>
+  <li>
+    <strong>Name:</strong>
+    <%= @retro_board.name %>
+  </li>
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.retro_board_show_path(@socket, :edit, @retro_board), class: "button" %></span>
+<span><%= live_redirect "Back", to: Routes.retro_board_index_path(@socket, :index) %></span>

@@ -1,0 +1,35 @@
+<h1>Listing Retro Boards</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <%= live_modal @socket, RetroWeb.RetroBoardLive.FormComponent,
+    id: @retro_board.id || :new,
+    title: @page_title,
+    action: @live_action,
+    retro_board: @retro_board,
+    return_to: Routes.retro_board_index_path(@socket, :index) %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="retro-boards">
+    <%= for retro_board <- @retro_boards do %>
+      <tr id="retro-board-<%= retro_board.id %>">
+        <td><%= retro_board.name %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.retro_board_show_path(@socket, :show, retro_board) %></span>
+          <span><%= live_patch "Edit", to: Routes.retro_board_index_path(@socket, :edit, retro_board) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete_retro_board", phx_value_id: retro_board.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Retro Board", to: Routes.retro_board_index_path(@socket, :new) %></span>
