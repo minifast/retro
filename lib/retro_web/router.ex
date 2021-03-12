@@ -20,7 +20,6 @@ defmodule RetroWeb.Router do
     live "/", PageLive, :index
 
     live "/retro_boards", RetroBoardLive.Index, :index
-    live "/retro_boards/new", RetroBoardLive.Index, :new
     live "/retro_boards/:id/edit", RetroBoardLive.Index, :edit
 
     live "/retro_boards/:id", RetroBoardLive.Show, :show

@@ -22,12 +22,6 @@ defmodule RetroWeb.RetroBoardLive.Index do
     |> assign(:retro_board, RetroBoards.get_retro_board!(id))
   end
 
-  defp apply_action(socket, :new, _params) do
-    socket
-    |> assign(:page_title, "New Retro Board")
-    |> assign(:retro_board, %RetroBoard{})
-  end
-
   defp apply_action(socket, :index, _params) do
     socket
     |> assign(:page_title, "Listing Retro Boards")

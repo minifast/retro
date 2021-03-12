@@ -3,10 +3,11 @@ defmodule RetroWeb.RetroBoardLive.FormComponent do
   use RetroWeb, :live_component
 
   alias Retro.RetroBoards
+  alias Retro.RetroBoards.RetroBoard
 
   @impl true
   def update(%{retro_board: retro_board} = assigns, socket) do
-    changeset = RetroBoards.change_retro_board(retro_board)
+    changeset = RetroBoards.change_retro_board(retro_board || %RetroBoard{})
 
     {:ok,
      socket
