@@ -28,6 +28,8 @@ defmodule Retro.DataCase do
   end
 
   setup tags do
+    :timer.sleep(100)
+
     :ok = Ecto.Adapters.SQL.Sandbox.checkout(Retro.Repo)
 
     unless tags[:async] do
