@@ -60,7 +60,7 @@ defmodule RetroWeb.RetroBoardLiveTest do
 
       assert index_live
              |> form("#retro-board-form", retro_board: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
+             |> render_submit() =~ "can&#39;t be blank"
     end
 
     test "updates a retro board name", %{conn: conn, retro_board: retro_board} do
@@ -114,7 +114,7 @@ defmodule RetroWeb.RetroBoardLiveTest do
 
       assert show_live
              |> form("#retro-board-form", retro_board: @invalid_attrs)
-             |> render_change() =~ "can&#39;t be blank"
+             |> render_submit() =~ "can&#39;t be blank"
     end
 
     test "updates retro_board within modal", %{conn: conn, retro_board: retro_board} do
