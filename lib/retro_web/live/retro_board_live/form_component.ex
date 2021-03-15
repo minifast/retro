@@ -16,15 +16,6 @@ defmodule RetroWeb.RetroBoardLive.FormComponent do
   end
 
   @impl true
-  def handle_event("validate", %{"retro_board" => retro_board_params}, socket) do
-    changeset =
-      socket.assigns.retro_board
-      |> RetroBoards.change_retro_board(retro_board_params)
-      |> Map.put(:action, :validate)
-
-    {:noreply, assign(socket, :changeset, changeset)}
-  end
-
   def handle_event("save_retro_board", %{"retro_board" => retro_board_params}, socket) do
     save_retro_board(socket, socket.assigns.action, retro_board_params)
   end

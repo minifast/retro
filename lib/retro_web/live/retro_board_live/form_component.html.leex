@@ -3,7 +3,6 @@
 <%= f = form_for @changeset, "#",
   id: "retro-board-form",
   phx_target: @myself,
-  phx_change: "validate",
   phx_submit: "save_retro_board" %>
 
   <%= label f, :name %>
