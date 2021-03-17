@@ -3,7 +3,10 @@
 </section>
 
 <section>
-  <%= live_component @socket, RetroWeb.TopicForm, id: :topic_form %>
-  <%= live_component @socket, RetroWeb.TopicList, id: :topics, topics: @topics %>
+  <%= live_component @socket, RetroWeb.TopicForm, id: :topic_form, return_to: Routes.page_path(@socket, :index) %>
+</section>
+
+<section>
+  <%= live_component @socket, RetroWeb.TopicList, id: :topics, topics: @topics, return_to: Routes.page_path(@socket, :index) %>
 </section>
 

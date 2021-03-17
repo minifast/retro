@@ -11,7 +11,8 @@ defmodule RetroWeb.TopicFormLiveTest do
           session: %{
             "component" => RetroWeb.TopicForm,
             "component_assigns" => %{
-              "id" => "topic-form-1"
+              "id" => "topic-form-1",
+              "return_to" => "/"
             }
           }
         )
@@ -27,7 +28,8 @@ defmodule RetroWeb.TopicFormLiveTest do
           session: %{
             "component" => RetroWeb.TopicForm,
             "component_assigns" => %{
-              "id" => "topic-form-1"
+              "id" => "topic-form-1",
+              "return_to" => "/"
             }
           }
         )
