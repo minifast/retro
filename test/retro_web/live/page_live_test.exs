@@ -19,7 +19,6 @@ defmodule RetroWeb.PageLiveTest do
      {:ok, _view, html} = live(conn, "/")
 
       assert html =~ "class=\"topic-list\">"
-      refute html =~ "<tr"
     end
 
     test "when there are topics it lists all topics", %{conn: conn} do
@@ -27,7 +26,6 @@ defmodule RetroWeb.PageLiveTest do
       {:ok, _view, html} = live(conn, "/")
 
       assert html =~ "class=\"topic-list\">"
-      assert html =~ "<tr"
       assert html =~ "#{topic.description}"
     end
 

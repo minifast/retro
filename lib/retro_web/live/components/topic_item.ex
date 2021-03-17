@@ -6,28 +6,26 @@ defmodule RetroWeb.TopicItem do
   @impl true
   def render(assigns) do
     ~L"""
-    <tr id="topic-<%= @topic.id %>">
-      <td width="70%">
+    <article id="topic-<%= @topic.id %>">
+      <section class="topic-description">
         <%= @topic.description %>
-      </td>
-      <td style="text-align: center">
-        <span>
-          <%=
-            link(
-              gettext("Delete"),
-              to: "#",
-              phx_target: @myself,
-              phx_click: :delete_topic,
-              phx_value_topic_id: @topic.id,
-              data: [
-                confirm: gettext("Are you sure you want to delete \"%{description}\"?",
-                description: @topic.description)
-              ]
-            )
-          %>
-        </span>
-      </td>
-    </tr>
+      </section>
+      <section class="topic-delete">
+        <%=
+          link(
+            gettext("Delete"),
+            to: "#",
+            phx_target: @myself,
+            phx_click: :delete_topic,
+            phx_value_topic_id: @topic.id,
+            data: [
+              confirm: gettext("Are you sure you want to delete \"%{description}\"?",
+              description: @topic.description)
+            ]
+          )
+        %>
+      </section>
+    </article>
     """
   end
 

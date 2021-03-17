@@ -89,3 +89,23 @@
   display: block;
   margin: -1rem 0 2rem;
 }
+
+.topic-list li {
+  list-style: none;
+}
+
+.topic-list article {
+  display: flex;
+  background: #eee;
+  padding: 1rem;
+  border-radius: 6px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.topic-description {
+  flex-grow: 2;
+}
+
+.topic-delete {
+  padding-left: 2rem;
+}

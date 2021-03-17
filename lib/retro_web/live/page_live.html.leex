@@ -7,11 +7,9 @@
 </section>
 
 <section>
-  <table>
-    <tbody id="topic-list" class="topic-list">
-      <%= for topic <- @topics do %>
-        <%= live_component @socket, RetroWeb.TopicItem, id: "topic-item-#{topic.id}", topic: topic %>
-      <% end %>
-    </tbody>
-  <table>
+  <ul id="topic-list" class="topic-list">
+    <%= for topic <- @topics do %>
+      <li><%= live_component @socket, RetroWeb.TopicItem, id: "topic-item-#{topic.id}", topic: topic %></li>
+    <% end %>
+  </ul>
 </section>
