@@ -7,6 +7,11 @@
 </section>
 
 <section>
-  <%= live_component @socket, RetroWeb.TopicList, id: :topics, topics: @topics, return_to: Routes.page_path(@socket, :index) %>
+  <table>
+    <tbody id="topic-list" class="topic-list">
+      <%= for topic <- @topics do %>
+        <%= live_component @socket, RetroWeb.TopicItem, id: "topic-item-#{topic.id}", topic: topic %>
+      <% end %>
+    </tbody>
+  <table>
 </section>
-
