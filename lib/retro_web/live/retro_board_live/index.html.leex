@@ -6,14 +6,18 @@
     title: @page_title,
     action: @live_action,
     retro_board: @retro_board,
+    label_name: "Name",
+    button_label: "Update",
     return_to: Routes.retro_board_index_path(@socket, :index) %>
 <% end %>
 
-<%= live_component @socket, RetroWeb.RetroBoardLive.AddFormComponent,
+<%= live_component @socket, RetroWeb.RetroBoardLive.FormComponent,
   id: :retro_board,
   title: @page_title,
   action: :new,
   retro_board: @retro_board,
+  label_name: "",
+  button_label: "Add",
   return_to: Routes.retro_board_index_path(@socket, :index) %>
 
 <table>

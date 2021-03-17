@@ -1,13 +1,11 @@
-<h2><%= @title %></h2>
-
 <%= f = form_for @changeset, "#",
-  id: "retro-board-form",
+  id: gettext("%{action}-retro-board-form", action: @action),
   phx_target: @myself,
   phx_submit: "save_retro_board" %>
 
-  <%= label f, :name %>
+  <%= label f, @label_name %>
   <%= text_input f, :name %>
   <%= error_tag f, :name %>
 
-  <%= submit "Save", phx_disable_with: "Saving..." %>
+  <%= submit @button_label, phx_disable_with: "Saving..." %>
 </form>

@@ -15,11 +15,11 @@ defmodule RetroWeb.UsersHaveRetroBoards do
     |> assert_has(Query.text("Retro Boards"))
     |> assert_has(Query.text("Bagels!"))
     |> click(Query.link("Edit"))
-    |> find(Query.css("#add-retro-board-form"), fn form ->
+    |> find(Query.css("#edit-retro-board-form"), fn form ->
       form
       |> fill_in(text_field("retro_board[name]"), with: "Bagels")
     end)
-    |> click(button("Save"))
+    |> click(button("Update"))
     |> assert_has(Query.text("Bagels"))
 
     other_session
@@ -47,11 +47,11 @@ defmodule RetroWeb.UsersHaveRetroBoards do
 
     session
     |> click(Query.link("Edit"))
-    |> find(Query.css("#retro-board-form"), fn form ->
+    |> find(Query.css("#edit-retro-board-form"), fn form ->
       form
       |> fill_in(text_field("retro_board[name]"), with: "My Donuts")
     end)
-    |> click(button("Save"))
+    |> click(button("Update"))
     |> assert_has(Query.text("My Donuts"))
 
     session

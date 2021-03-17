@@ -33,7 +33,7 @@ defmodule RetroWeb.RetroBoardLiveTest do
       {:ok, index_live, _html} = live(conn, Routes.retro_board_index_path(conn, :index))
 
       assert index_live
-             |> element("#add-retro-board-form")
+             |> element("#new-retro-board-form")
              |> render_submit() =~ "can&#39;t be blank"
     end
 
@@ -42,7 +42,7 @@ defmodule RetroWeb.RetroBoardLiveTest do
 
       {:ok, _, html} =
         index_live
-        |> form("#add-retro-board-form", retro_board: @create_attrs)
+        |> form("#new-retro-board-form", retro_board: @create_attrs)
         |> render_submit()
         |> follow_redirect(conn, Routes.retro_board_index_path(conn, :index))
 
@@ -54,12 +54,12 @@ defmodule RetroWeb.RetroBoardLiveTest do
 
       assert index_live
              |> element("#retro-board-#{retro_board.id} a", "Edit")
-             |> render_click() =~ "Edit Retro Board"
+             |> render_click()
 
       assert_patch(index_live, Routes.retro_board_index_path(conn, :edit, retro_board))
 
       assert index_live
-             |> form("#retro-board-form", retro_board: @invalid_attrs)
+             |> form("#edit-retro-board-form", retro_board: @invalid_attrs)
              |> render_submit() =~ "can&#39;t be blank"
     end
 
@@ -68,13 +68,13 @@ defmodule RetroWeb.RetroBoardLiveTest do
 
       assert index_live
              |> element("#retro-board-#{retro_board.id} a", "Edit")
-             |> render_click() =~ "Edit Retro Board"
+             |> render_click()
 
       assert_patch(index_live, Routes.retro_board_index_path(conn, :edit, retro_board))
 
       {:ok, _, html} =
         index_live
-        |> form("#retro-board-form", retro_board: @update_attrs)
+        |> form("#edit-retro-board-form", retro_board: @update_attrs)
         |> render_submit()
         |> follow_redirect(conn, Routes.retro_board_index_path(conn, :index))
 
@@ -108,12 +108,12 @@ defmodule RetroWeb.RetroBoardLiveTest do
 
       assert show_live
              |> element("a", "Edit")
-             |> render_click() =~ "Edit Retro Board"
+             |> render_click()
 
       assert_patch(show_live, Routes.retro_board_show_path(conn, :edit, retro_board))
 
       assert show_live
-             |> form("#retro-board-form", retro_board: @invalid_attrs)
+             |> form("#edit-retro-board-form", retro_board: @invalid_attrs)
              |> render_submit() =~ "can&#39;t be blank"
     end
 
@@ -122,13 +122,13 @@ defmodule RetroWeb.RetroBoardLiveTest do
 
       assert show_live
              |> element("a", "Edit")
-             |> render_click() =~ "Edit Retro Board"
+             |> render_click()
 
       assert_patch(show_live, Routes.retro_board_show_path(conn, :edit, retro_board))
 
       {:ok, _, html} =
         show_live
-        |> form("#retro-board-form", retro_board: @update_attrs)
+        |> form("#edit-retro-board-form", retro_board: @update_attrs)
         |> render_submit()
         |> follow_redirect(conn, Routes.retro_board_show_path(conn, :show, retro_board))
 
