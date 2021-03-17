@@ -1,7 +1,9 @@
 <section class="phx-hero">
   <h1><%= gettext "Welcome to %{name}!", name: "Retro" %></h1>
 </section>
+
 <section>
-  <%= live_component @socket, RetroWeb.TopicList, id: :topics, topic: @topic, topics: @topics %>
+  <%= live_component @socket, RetroWeb.TopicForm, id: :topic_form %>
+  <%= live_component @socket, RetroWeb.TopicList, id: :topics, topics: @topics %>
 </section>
 
