@@ -1,7 +1,3 @@
-<section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Retro" %></h1>
-</section>
-
 <section>
   <%= live_component @socket, RetroWeb.TopicForm, id: :topic_form, return_to: Routes.page_path(@socket, :index) %>
 </section>

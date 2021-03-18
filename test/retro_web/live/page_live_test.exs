@@ -6,8 +6,8 @@ defmodule RetroWeb.PageLiveTest do
   describe "Index" do
     test "disconnected and connected render", %{conn: conn} do
       {:ok, page_live, disconnected_html} = live(conn, "/")
-      assert disconnected_html =~ "Welcome to Retro!"
-      assert render(page_live) =~ "Welcome to Retro!"
+      assert disconnected_html =~ "Description"
+      assert render(page_live) =~ "Description"
     end
 
     test "it renders a add topic form", %{conn: conn} do
@@ -16,7 +16,7 @@ defmodule RetroWeb.PageLiveTest do
     end
 
     test "when there are no topics it renders an empty list", %{conn: conn} do
-     {:ok, _view, html} = live(conn, "/")
+      {:ok, _view, html} = live(conn, "/")
 
       assert html =~ "class=\"topic-list\">"
     end
