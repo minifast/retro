@@ -2,7 +2,6 @@ defmodule RetroWeb.PageLive do
   @moduledoc false
   use RetroWeb, :live_view
   alias Retro.Topics
-  alias Retro.Topics.Topic
 
   @impl true
   def mount(_params, _session, socket) do
