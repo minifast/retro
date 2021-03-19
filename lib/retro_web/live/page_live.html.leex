@@ -5,7 +5,7 @@
 <section>
   <section class="topic-lists">
     <%= for topic_list <- @topic_lists do %>
-      <section class="topic-lists__item"><%= live_component @socket, RetroWeb.TopicList, id: "topic-list-#{topic_list.id}", topic_list: topic_list %></section>
+      <section class="topic-lists__item"><%= live_component @socket, RetroWeb.TopicList, topic_list: topic_list %></section>
     <% end %>
   </section>
 </section>
