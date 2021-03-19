@@ -15,6 +15,5 @@ defmodule Retro.Topics.Topic do
     |> cast(attrs, [:description])
     |> put_assoc(:topic_list, attrs[:topic_list])
     |> validate_required([:description, :topic_list])
-    |> validate_required([:description])
   end
 end
