@@ -90,22 +90,43 @@
   margin: -1rem 0 2rem;
 }
 
-.topic-list li {
-  list-style: none;
-}
+.topic-item { list-style: none; }
 
-.topic-list article {
+.topic {
   display: flex;
   background: #eee;
   padding: 1rem;
   border-radius: 6px;
   border-bottom: 1px solid #e3e3e3;
+
+  &__description { flex-grow: 2; }
+  &__delete { padding-left: 2rem; }
 }
 
-.topic-description {
-  flex-grow: 2;
+.topic-list {
+  display: flex;
+  background: #e3e3e3;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  &__name { flex-grow: 2; }
+  &__delete { padding-left: 2rem; }
 }
 
-.topic-delete {
-  padding-left: 2rem;
+.form {
+  display: flex;
+  align-items: flex-end;
+
+  &__field { flex-grow: 2; }
+  &__button {
+    padding-left: 2rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.topic-lists {
+  display: flex;
+
+  &__item { padding: 0 1rem;}
 }

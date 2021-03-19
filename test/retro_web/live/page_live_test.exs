@@ -10,32 +10,64 @@ defmodule RetroWeb.PageLiveTest do
       assert render(page_live) =~ "Welcome to Retro!"
     end
 
-    test "it renders a add topic form", %{conn: conn} do
+    test "it renders a topic list container", %{conn: conn} do
       {:ok, _view, html} = live(conn, "/")
-      assert html =~ "id=\"add-topic-form\""
+      assert html =~ "class=\"topic-lists\""
     end
 
-    test "when there are no topics it renders an empty list", %{conn: conn} do
-     {:ok, _view, html} = live(conn, "/")
+    test "when there are topic lists it renders add topic form", %{conn: conn} do
+      Topics.create_topic_list(%{name: "some name"})
+      {:ok, _view, html} = live(conn, "/")
+      assert html =~ "class=\"add-topic-list-form\""
+    end
 
-      assert html =~ "class=\"topic-list\">"
+    test "when there are topic lists it lists all topic lists", %{conn: conn} do
+      Topics.create_topic_list(%{name: "some name"})
+      {:ok, _view, html} = live(conn, "/")
+
+      assert html =~ "some name"
+    end
+
+    test "when there are topic lists it deletes a topic list", %{conn: conn} do
+      {:ok, topic_list} = Topics.create_topic_list(%{name: "some name"})
+      topic_list = Retro.Repo.preload(topic_list, :topics)
+
+      {:ok, view, _html} = live(conn, "/")
+
+      assert Topics.list_topic_lists() == [topic_list]
+
+      render_click(view, "delete_topic_list", %{"topic-list-id" => topic_list.id})
+
+      assert Topics.list_topic_lists() == []
     end
 
     test "when there are topics it lists all topics", %{conn: conn} do
-      {:ok, topic} = Topics.create_topic(%{description: "some description"})
+      {:ok, topic_list} = Topics.create_topic_list(%{name: "some name"})
+
+      {:ok, topic} =
+        Topics.create_topic(%{description: "some description", topic_list: topic_list})
+
       {:ok, _view, html} = live(conn, "/")
 
-      assert html =~ "class=\"topic-list\">"
+      assert html =~ "class=\"topic-items\">"
       assert html =~ "#{topic.description}"
     end
 
-    # We are not able to test the component because a bug
-    # https://github.com/phoenixframework/phoenix_live_view/issues/1377
-    @tag :skip
     test "when there are topics it deletes a topic", %{conn: conn} do
+      {:ok, topic_list} = Topics.create_topic_list(%{name: "some name"})
+
+      {:ok, topic} =
+        Topics.create_topic(%{description: "some description", topic_list: topic_list})
+
+      topic = Retro.Repo.preload(topic, :topic_list)
+
       {:ok, view, _html} = live(conn, "/")
 
-      view |> render_click(:delete_topic) =~ "deleted"
+      assert Topics.list_topics() |> Retro.Repo.preload(:topic_list) == [topic]
+
+      render_click(view, "delete_topic", %{"topic-id" => topic.id})
+
+      assert Topics.list_topics() == []
     end
   end
 end

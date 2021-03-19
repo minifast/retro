@@ -5,38 +5,72 @@ defmodule RetroWeb.TopicFormLiveTest do
   alias Retro.Topics
 
   describe "TopicForm" do
-    test "when submitting an invalid changest displays an error message", %{conn: conn} do
+    test "when submitting an invalid changeset with no description displays an error message", %{
+      conn: conn
+    } do
+      {:ok, topic_list} = Topics.create_topic_list(%{name: "some list"})
+
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
             "component" => RetroWeb.TopicForm,
             "component_assigns" => %{
               "id" => "topic-form-1",
-              "return_to" => "/"
+              "topic_list_id" => topic_list.id
             }
           }
         )
 
       assert view
              |> element("form")
-             |> render_submit(%{"topic" => %{"description" => ""}}) =~ "can&#39;t be blank"
+             |> render_submit(%{
+               "topic" => %{"description" => ""}
+             }) =~
+               "can&#39;t be blank"
+    end
+
+    test "when submitting an invalid changeset with no topic list id displays an error message",
+         %{
+           conn: conn
+         } do
+      {:ok, view, _html} =
+        live_isolated(conn, LiveComponentHarness,
+          session: %{
+            "component" => RetroWeb.TopicForm,
+            "component_assigns" => %{
+              "id" => "topic-form-1",
+              "topic_list_id" => "-1"
+            }
+          }
+        )
+
+      assert view
+             |> element("form")
+             |> render_submit(%{
+               "topic" => %{"description" => "sweet!"}
+             }) =~
+               "can&#39;t be blank"
     end
 
     test "when submitting a valid changest adds a new topic", %{conn: conn} do
+      {:ok, topic_list} = Topics.create_topic_list(%{name: "some list"})
+
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
             "component" => RetroWeb.TopicForm,
             "component_assigns" => %{
               "id" => "topic-form-1",
-              "return_to" => "/"
+              "topic_list_id" => topic_list.id
             }
           }
         )
 
       assert view
              |> element("form")
-             |> render_submit(%{"topic" => %{"description" => "sweet!"}})
+             |> render_submit(%{
+               "topic" => %{"description" => "sweet!"}
+             })
 
       new_topic = Topics.list_topics() |> List.last()
 

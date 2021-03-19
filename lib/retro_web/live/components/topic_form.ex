@@ -13,26 +13,31 @@ defmodule RetroWeb.TopicForm do
   def render(assigns) do
     ~L"""
     <%= f = form_for @topic, "#",
-      id: "add-topic-form",
-      phx_submit: :save,
+      class: "add-topic-list-form",
+      phx_submit: :add_topic,
       phx_target: @myself %>
 
-      <%= label f, :description %>
-      <%= textarea f, :description %>
+      <%= hidden_input f, :topic_list_id, value: @topic_list_id, id: nil %>
+      <%= error_tag f, :topic_list %>
+      <%= textarea f, :description, id: nil %>
       <%= error_tag f, :description %>
-
-      <%= submit "Save" %>
+      <%= submit "Add Topic" %>
     </form>
     """
   end
 
   @impl true
-  def handle_event("save", %{"topic" => topic_params}, socket) do
-    case Topics.create_topic(topic_params) do
+  def handle_event("add_topic", %{"topic" => topic_params}, socket) do
+    topic_list = Topics.get_topic_list(topic_params["topic_list_id"])
+
+    case Topics.create_topic(%{
+           description: topic_params["description"],
+           topic_list: topic_list
+         }) do
       {:ok, _topic} ->
         {:noreply,
          socket
-         |> push_redirect(to: socket.assigns.return_to)}
+         |> push_redirect(to: Routes.page_path(socket, :index))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :topic, changeset)}

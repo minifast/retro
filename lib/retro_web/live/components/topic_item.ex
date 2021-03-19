@@ -6,16 +6,15 @@ defmodule RetroWeb.TopicItem do
   @impl true
   def render(assigns) do
     ~L"""
-    <article id="topic-<%= @topic.id %>">
-      <section class="topic-description">
+    <article class="topic">
+      <section class="topic__description">
         <%= @topic.description %>
       </section>
-      <section class="topic-delete">
+      <section class="topic__delete">
         <%=
           link(
-            gettext("Delete"),
+            gettext("Delete Topic"),
             to: "#",
-            phx_target: @myself,
             phx_click: :delete_topic,
             phx_value_topic_id: @topic.id,
             data: [
@@ -27,20 +26,5 @@ defmodule RetroWeb.TopicItem do
       </section>
     </article>
     """
-  end
-
-  @impl true
-  def handle_event("delete_topic", %{"topic-id" => topic_id}, socket) do
-    topic = Topics.get_topic!(topic_id)
-
-    case Topics.delete_topic(topic) do
-      {:ok, _topic} ->
-        {:noreply, socket}
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        {:noreply, assign(socket, :topic, changeset)}
-    end
-
-    {:noreply, socket}
   end
 end
