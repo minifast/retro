@@ -18,7 +18,7 @@ defmodule RetroWeb.PageLiveTest do
     test "when there are topic lists it renders add topic form", %{conn: conn} do
       Topics.create_topic_list(%{name: "some name"})
       {:ok, _view, html} = live(conn, "/")
-      assert html =~ "class=\"add-topic-list-form\""
+      assert html =~ "class=\"topic-form\""
     end
 
     test "when there are topic lists it lists all topic lists", %{conn: conn} do

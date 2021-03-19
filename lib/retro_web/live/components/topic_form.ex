@@ -13,12 +13,12 @@ defmodule RetroWeb.TopicForm do
   def render(assigns) do
     ~L"""
     <%= f = form_for @topic, "#",
-      class: "add-topic-list-form",
+      class: "topic-form",
       phx_submit: :add_topic,
       phx_target: @myself %>
 
       <%= hidden_input f, :topic_list_id, value: @topic_list_id, id: nil %>
-      <%= textarea f, :description, id: nil %>
+      <%= textarea f, :description, id: nil, class: "topic-form__field" %>
       <%= error_tag f, :description %>
       <%= error_tag f, :topic_list %>
       <%= submit "Add Topic" %>

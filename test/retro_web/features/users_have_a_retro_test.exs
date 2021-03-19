@@ -32,8 +32,8 @@ defmodule RetroWeb.UsersHaveARetro do
     end)
 
     session
-    |> refute_has(Query.text("the bagels were incredible!"))
     |> assert_has(Query.text("as were the donuts!"))
+    |> refute_has(Query.text("the bagels were incredible!"))
 
     other_session
     |> assert_has(Query.text("as were the donuts!"))

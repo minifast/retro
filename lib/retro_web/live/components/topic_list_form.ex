@@ -13,22 +13,21 @@ defmodule RetroWeb.TopicListForm do
   def render(assigns) do
     ~L"""
     <%= f = form_for @topic_list, "#",
+      class: "topic-list-form",
       phx_submit: :add_topic_list,
       phx_target: @myself %>
 
-      <section class="form">
-        <section>
-          <%= label f, :name, "List Name" %>
-        </section>
+      <section>
+        <%= label f, :name, "List Name" %>
+      </section>
 
-        <section class="form__field">
-          <%= text_input f, :name %>
-          <%= error_tag f, :name %>
-        </section>
+      <section class="topic-list-form__field">
+        <%= text_input f, :name %>
+        <%= error_tag f, :name %>
+      </section>
 
-        <section class="form__button">
-          <%= submit "Add List" %>
-        </section>
+      <section class="topic-list-form__button">
+        <%= submit "Add List" %>
       </section>
     """
   end
