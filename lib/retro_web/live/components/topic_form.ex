@@ -22,7 +22,6 @@ defmodule RetroWeb.TopicForm do
       <%= error_tag f, :description %>
       <%= error_tag f, :topic_list %>
       <%= submit "Add Topic" %>
-    </form>
     """
   end
 

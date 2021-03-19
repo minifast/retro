@@ -17,8 +17,11 @@ defmodule RetroWeb.TopicListForm do
       phx_target: @myself %>
 
       <section class="form">
-        <section class="form__field">
+        <section>
           <%= label f, :name, "List Name" %>
+        </section>
+
+        <section class="form__field">
           <%= text_input f, :name %>
           <%= error_tag f, :name %>
         </section>
@@ -27,7 +30,6 @@ defmodule RetroWeb.TopicListForm do
           <%= submit "Add List" %>
         </section>
       </section>
-    </form>
     """
   end
 
