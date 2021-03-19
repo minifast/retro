@@ -27,15 +27,15 @@ defmodule RetroWeb.TopicList do
       </article>
 
       <section>
+        <%= live_component @socket, RetroWeb.TopicForm, id: "topic-form-list-#{@topic_list.id}", topic_list_id: @topic_list.id %>
+      </section>
+
+      <section>
         <ul class="topic-items">
           <%= for topic <- @topic_list.topics do %>
             <li class="topic-item"><%= live_component socket, RetroWeb.TopicItem, topic: topic %></li>
           <% end %>
         </ul>
-      </section>
-
-      <section>
-        <%= live_component @socket, RetroWeb.TopicForm, id: "topic-form-list-#{@topic_list.id}", topic_list_id: @topic_list.id %>
       </section>
     </section>
     """
