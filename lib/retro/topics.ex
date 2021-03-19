@@ -7,13 +7,9 @@ defmodule Retro.Topics do
   alias Retro.Topics.TopicList
 
   def list_topic_lists do
-    Repo.all(
-      from(
-        t in TopicList,
-        preload: [:topics],
-        order_by: [asc: fragment("lower(?)", t.name)]
-      )
-    )
+    TopicList
+    |> Repo.all()
+    |> Repo.preload(:topics)
   end
 
   def get_topic_list!(id), do: Repo.get!(TopicList, id)
