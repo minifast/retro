@@ -42,9 +42,7 @@ defmodule RetroWeb.PageLive do
 
   @impl true
   def handle_event("delete_topic_list", %{"topic-list-id" => topic_list_id}, socket) do
-    topic_list = Topics.get_topic_list!(topic_list_id)
-
-    case Topics.delete_topic_list(topic_list) do
+    case Topics.delete_topic_list(String.to_integer(topic_list_id)) do
       {:ok, _topic_list} ->
         {:noreply, socket}
 
@@ -55,9 +53,7 @@ defmodule RetroWeb.PageLive do
 
   @impl true
   def handle_event("delete_topic", %{"topic-id" => topic_id}, socket) do
-    topic = Topics.get_topic!(topic_id)
-
-    case Topics.delete_topic(topic) do
+    case Topics.delete_topic(String.to_integer(topic_id)) do
       {:ok, _topic} ->
         {:noreply, socket}
 

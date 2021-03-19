@@ -36,7 +36,7 @@ defmodule RetroWeb.PageLiveTest do
 
       assert Topics.list_topic_lists() == [topic_list]
 
-      render_click(view, "delete_topic_list", %{"topic-list-id" => topic_list.id})
+      render_click(view, "delete_topic_list", %{"topic-list-id" => "#{topic_list.id}"})
 
       assert Topics.list_topic_lists() == []
     end
@@ -65,7 +65,7 @@ defmodule RetroWeb.PageLiveTest do
 
       assert Topics.list_topics() |> Retro.Repo.preload(:topic_list) == [topic]
 
-      render_click(view, "delete_topic", %{"topic-id" => topic.id})
+      render_click(view, "delete_topic", %{"topic-id" => "#{topic.id}"})
 
       assert Topics.list_topics() == []
     end

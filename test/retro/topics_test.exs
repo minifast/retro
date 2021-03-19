@@ -67,10 +67,16 @@ defmodule Retro.TopicsTest do
       assert topic_list == Topics.get_topic_list!(topic_list.id)
     end
 
-    test "delete_topic_list/1 deletes the topic_list" do
+    test "delete_topic_list/1 with a valid id deletes the topic_list" do
       topic_list = topic_list_fixture()
-      assert {:ok, %TopicList{}} = Topics.delete_topic_list(topic_list)
+      assert {:ok, %TopicList{}} = Topics.delete_topic_list(topic_list.id)
       assert_raise Ecto.NoResultsError, fn -> Topics.get_topic_list!(topic_list.id) end
+    end
+
+    test "delete_topic_list/1 with an invalid id raises an error" do
+      assert_raise Ecto.ChangeError, fn ->
+        Topics.delete_topic_list("garbage")
+      end
     end
 
     test "change_topic_list/1 returns a topic_list changeset" do
@@ -177,11 +183,17 @@ defmodule Retro.TopicsTest do
       assert topic == Topics.get_topic!(topic.id) |> Repo.preload(:topic_list)
     end
 
-    test "delete_topic/1 deletes the topic" do
+    test "delete_topic/1 with a valid id deletes the topic" do
       topic_list = topic_list_fixture()
       topic = topic_fixture(%{topic_list: topic_list})
-      assert {:ok, %Topic{}} = Topics.delete_topic(topic)
+      assert {:ok, %Topic{}} = Topics.delete_topic(topic.id)
       assert_raise Ecto.NoResultsError, fn -> Topics.get_topic!(topic.id) end
+    end
+
+    test "delete_topic_list/1 with an invalid id raises an error" do
+      assert_raise Ecto.ChangeError, fn ->
+        Topics.delete_topic("garbage")
+      end
     end
 
     test "change_topic/1 returns a topic changeset" do

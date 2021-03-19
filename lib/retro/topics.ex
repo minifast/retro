@@ -33,15 +33,10 @@ defmodule Retro.Topics do
     |> broadcast(:topic_list_updated)
   end
 
-  def delete_topic_list(%TopicList{} = topic_list) do
-    Repo.delete(topic_list)
+  def delete_topic_list(id) do
+    Repo.delete(%TopicList{id: id})
     |> broadcast(:topic_list_deleted)
   end
-
-  # def delete_topic_list_by_id(id) do
-  #   Repo.delete(%TopicList{id: id})
-  #   |> broadcast(:topic_list_deleted)
-  # end
 
   def change_topic_list(%TopicList{} = topic_list, attrs \\ %{}) do
     TopicList.changeset(topic_list, attrs)
@@ -72,8 +67,8 @@ defmodule Retro.Topics do
     |> broadcast(:topic_updated)
   end
 
-  def delete_topic(%Topic{} = topic) do
-    Repo.delete(topic)
+  def delete_topic(id) do
+    Repo.delete(%Topic{id: id})
     |> broadcast(:topic_deleted)
   end
 
