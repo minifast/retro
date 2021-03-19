@@ -42,7 +42,7 @@ defmodule Retro.Topics.TopicTest do
     test "returns an error when there is no topic list" do
       changeset = Topic.changeset(%Topic{}, %{description: "Happy"})
       %{topic_list: topic_list_errors} = errors_on(changeset)
-      assert ["can't be blank"] == topic_list_errors
+      assert ["List can't be blank"] == topic_list_errors
     end
 
     test "returns an error when the topic list is invalid" do

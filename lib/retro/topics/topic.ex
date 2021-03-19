@@ -14,6 +14,7 @@ defmodule Retro.Topics.Topic do
     topic
     |> cast(attrs, [:description])
     |> put_assoc(:topic_list, attrs[:topic_list])
-    |> validate_required([:description, :topic_list])
+    |> validate_required([:description])
+    |> validate_required([:topic_list], message: "List can't be blank")
   end
 end

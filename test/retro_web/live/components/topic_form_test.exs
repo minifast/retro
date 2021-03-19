@@ -24,7 +24,7 @@ defmodule RetroWeb.TopicFormLiveTest do
       assert view
              |> element("form")
              |> render_submit(%{
-               "topic" => %{"description" => ""}
+               "topic" => %{"description" => "", topic_list_id: topic_list.id}
              }) =~
                "can&#39;t be blank"
     end
@@ -49,7 +49,7 @@ defmodule RetroWeb.TopicFormLiveTest do
              |> render_submit(%{
                "topic" => %{"description" => "sweet!"}
              }) =~
-               "can&#39;t be blank"
+               "List can&#39;t be blank"
     end
 
     test "when submitting a valid changest adds a new topic", %{conn: conn} do
@@ -69,7 +69,7 @@ defmodule RetroWeb.TopicFormLiveTest do
       assert view
              |> element("form")
              |> render_submit(%{
-               "topic" => %{"description" => "sweet!"}
+               "topic" => %{"description" => "sweet!", topic_list_id: topic_list.id}
              })
 
       new_topic = Topics.list_topics() |> List.last()

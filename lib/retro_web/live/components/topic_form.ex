@@ -18,9 +18,9 @@ defmodule RetroWeb.TopicForm do
       phx_target: @myself %>
 
       <%= hidden_input f, :topic_list_id, value: @topic_list_id, id: nil %>
-      <%= error_tag f, :topic_list %>
       <%= textarea f, :description, id: nil %>
       <%= error_tag f, :description %>
+      <%= error_tag f, :topic_list %>
       <%= submit "Add Topic" %>
     </form>
     """
