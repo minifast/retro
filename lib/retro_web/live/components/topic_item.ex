@@ -1,7 +1,6 @@
 defmodule RetroWeb.TopicItem do
   @moduledoc false
   use RetroWeb, :live_component
-  alias Retro.Topics
 
   @impl true
   def render(assigns) do
