@@ -94,8 +94,8 @@
 
 .topic {
   display: flex;
-  background: #eee;
   padding: 1rem;
+  background: #eee;
   border-radius: 6px;
   border-bottom: 1px solid #e3e3e3;
 
@@ -105,10 +105,11 @@
 
 .topic-list {
   display: flex;
-  background: #e3e3e3;
-  border-radius: 6px;
   padding: 1rem;
   margin-bottom: 1rem;
+  background: #e3e3e3;
+  border-radius: 6px;
+  border-bottom: 1px solid #c7c7c7;
 
   &__name { flex-grow: 2; }
   &__delete { padding-left: 2rem; }
@@ -128,5 +129,5 @@
 .topic-lists {
   display: flex;
 
-  &__item { padding: 0 1rem;}
+  &__item:not(:first-child) { padding-left: 1rem; }
 }
