@@ -2,6 +2,7 @@ defmodule Retro.Topics.TopicList do
   @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
+  alias Retro.Topics
 
   schema "topic_lists" do
     field :name, :string
