@@ -1,0 +1,1 @@
+release: mix ecto.migrate
