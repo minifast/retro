@@ -1,5 +1,5 @@
-defmodule Retro.Repo do
+defmodule Retrospectives.Repo do
   use Ecto.Repo,
-    otp_app: :retro,
+    otp_app: :retrospectives,
     adapter: Ecto.Adapters.Postgres
 end

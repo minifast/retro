@@ -1,10 +1,10 @@
-defmodule Retro.RetroBoardsTest do
-  use Retro.DataCase
+defmodule Retrospectives.RetroBoardsTest do
+  use Retrospectives.DataCase
 
-  alias Retro.RetroBoards
+  alias Retrospectives.RetroBoards
 
   describe "retro_boards" do
-    alias Retro.RetroBoards.RetroBoard
+    alias Retrospectives.RetroBoards.RetroBoard
 
     @valid_attrs %{name: "some name"}
     @update_attrs %{name: "some updated name"}
@@ -40,13 +40,19 @@ defmodule Retro.RetroBoardsTest do
 
     test "update_retro_board/2 with valid data updates the retro_board" do
       retro_board = retro_board_fixture()
-      assert {:ok, %RetroBoard{} = retro_board} = RetroBoards.update_retro_board(retro_board, @update_attrs)
+
+      assert {:ok, %RetroBoard{} = retro_board} =
+               RetroBoards.update_retro_board(retro_board, @update_attrs)
+
       assert retro_board.name == "some updated name"
     end
 
     test "update_retro_board/2 with invalid data returns error changeset" do
       retro_board = retro_board_fixture()
-      assert {:error, %Ecto.Changeset{}} = RetroBoards.update_retro_board(retro_board, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               RetroBoards.update_retro_board(retro_board, @invalid_attrs)
+
       assert retro_board == RetroBoards.get_retro_board!(retro_board.id)
     end
 

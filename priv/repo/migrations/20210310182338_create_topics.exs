@@ -1,4 +1,4 @@
-defmodule Retro.Repo.Migrations.CreateTopics do
+defmodule Retrospectives.Repo.Migrations.CreateTopics do
   use Ecto.Migration
 
   def change do

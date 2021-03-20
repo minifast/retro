@@ -1,4 +1,4 @@
-defmodule RetroWeb.Telemetry do
+defmodule RetrospectivesWeb.Telemetry do
   @moduledoc false
 
   use Supervisor
@@ -51,7 +51,7 @@ defmodule RetroWeb.Telemetry do
     [
       # A module, function and arguments to be invoked periodically.
       # This function must call :telemetry.execute/3 and a metric must be added above.
-      # {RetroWeb, :count_users, []}
+      # {RetrospectivesWeb, :count_users, []}
     ]
   end
 end

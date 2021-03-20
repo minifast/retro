@@ -1,6 +1,6 @@
-defmodule RetroWeb.TopicItem do
+defmodule RetrospectivesWeb.TopicItem do
   @moduledoc false
-  use RetroWeb, :live_component
+  use RetrospectivesWeb, :live_component
 
   @impl true
   def render(assigns) do

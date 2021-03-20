@@ -1,9 +1,9 @@
-defmodule RetroWeb.RetroBoardLive.FormComponent do
+defmodule RetrospectivesWeb.RetroBoardLive.FormComponent do
   @moduledoc false
-  use RetroWeb, :live_component
+  use RetrospectivesWeb, :live_component
 
-  alias Retro.RetroBoards
-  alias Retro.RetroBoards.RetroBoard
+  alias Retrospectives.RetroBoards
+  alias Retrospectives.RetroBoards.RetroBoard
 
   @impl true
   def update(%{retro_board: retro_board} = assigns, socket) do

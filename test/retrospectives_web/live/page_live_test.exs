@@ -1,7 +1,7 @@
-defmodule RetroWeb.PageLiveTest do
-  use RetroWeb.ConnCase
+defmodule RetrospectivesWeb.PageLiveTest do
+  use RetrospectivesWeb.ConnCase
   import Phoenix.LiveViewTest
-  alias Retro.Topics
+  alias Retrospectives.Topics
 
   describe "Index" do
     test "disconnected and connected render", %{conn: conn} do
@@ -30,7 +30,7 @@ defmodule RetroWeb.PageLiveTest do
 
     test "when there are topic lists it deletes a topic list", %{conn: conn} do
       {:ok, topic_list} = Topics.create_topic_list(%{name: "some name"})
-      topic_list = Retro.Repo.preload(topic_list, :topics)
+      topic_list = Retrospectives.Repo.preload(topic_list, :topics)
 
       {:ok, view, _html} = live(conn, "/")
 
@@ -59,11 +59,11 @@ defmodule RetroWeb.PageLiveTest do
       {:ok, topic} =
         Topics.create_topic(%{description: "some description", topic_list: topic_list})
 
-      topic = Retro.Repo.preload(topic, :topic_list)
+      topic = Retrospectives.Repo.preload(topic, :topic_list)
 
       {:ok, view, _html} = live(conn, "/")
 
-      assert Topics.list_topics() |> Retro.Repo.preload(:topic_list) == [topic]
+      assert Topics.list_topics() |> Retrospectives.Repo.preload(:topic_list) == [topic]
 
       render_click(view, "delete_topic", %{"topic-id" => "#{topic.id}"})
 

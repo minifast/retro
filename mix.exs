@@ -1,9 +1,9 @@
-defmodule Retro.MixProject do
+defmodule Retrospectives.MixProject do
   use Mix.Project
 
   def project do
     [
-      app: :retro,
+      app: :retrospectives,
       version: "0.1.0",
       elixir: "~> 1.7",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -19,7 +19,7 @@ defmodule Retro.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Retro.Application, []},
+      mod: {Retrospectives.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

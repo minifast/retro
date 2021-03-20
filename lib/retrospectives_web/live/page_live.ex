@@ -1,7 +1,7 @@
-defmodule RetroWeb.PageLive do
+defmodule RetrospectivesWeb.PageLive do
   @moduledoc false
-  use RetroWeb, :live_view
-  alias Retro.Topics
+  use RetrospectivesWeb, :live_view
+  alias Retrospectives.Topics
 
   @impl true
   def mount(_params, _session, socket) do

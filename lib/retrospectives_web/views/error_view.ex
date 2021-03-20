@@ -1,5 +1,5 @@
-defmodule RetroWeb.ErrorView do
-  use RetroWeb, :view
+defmodule RetrospectivesWeb.ErrorView do
+  use RetrospectivesWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

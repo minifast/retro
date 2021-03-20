@@ -1,8 +1,8 @@
-defmodule RetroWeb.TopicFormLiveTest do
-  use RetroWeb.ConnCase
+defmodule RetrospectivesWeb.TopicFormLiveTest do
+  use RetrospectivesWeb.ConnCase
   import Phoenix.LiveViewTest
-  alias RetroWeb.Test.LiveComponentHarness
-  alias Retro.Topics
+  alias RetrospectivesWeb.Test.LiveComponentHarness
+  alias Retrospectives.Topics
 
   describe "TopicForm" do
     test "when submitting an invalid changeset with no description displays an error message", %{
@@ -13,7 +13,7 @@ defmodule RetroWeb.TopicFormLiveTest do
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
-            "component" => RetroWeb.TopicForm,
+            "component" => RetrospectivesWeb.TopicForm,
             "component_assigns" => %{
               "id" => "topic-form-1",
               "topic_list_id" => topic_list.id
@@ -36,7 +36,7 @@ defmodule RetroWeb.TopicFormLiveTest do
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
-            "component" => RetroWeb.TopicForm,
+            "component" => RetrospectivesWeb.TopicForm,
             "component_assigns" => %{
               "id" => "topic-form-1",
               "topic_list_id" => "-1"
@@ -58,7 +58,7 @@ defmodule RetroWeb.TopicFormLiveTest do
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
-            "component" => RetroWeb.TopicForm,
+            "component" => RetrospectivesWeb.TopicForm,
             "component_assigns" => %{
               "id" => "topic-form-1",
               "topic_list_id" => topic_list.id

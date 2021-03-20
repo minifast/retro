@@ -1,5 +1,5 @@
-defmodule RetroWeb.UsersHaveRetroBoards do
-  use RetroWeb.FeatureCase
+defmodule RetrospectivesWeb.UsersHaveRetroBoards do
+  use RetrospectivesWeb.FeatureCase
 
   @sessions 2
   feature "users have retro boards", %{sessions: [session, other_session]} do

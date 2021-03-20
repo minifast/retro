@@ -1,4 +1,4 @@
-defmodule Retro.Application do
+defmodule Retrospectives.Application do
   # See https://hexdocs.pm/elixir/Application.html
   # for more information on OTP Applications
   @moduledoc false
@@ -8,27 +8,27 @@ defmodule Retro.Application do
   def start(_type, _args) do
     children = [
       # Start the Ecto repository
-      Retro.Repo,
+      Retrospectives.Repo,
       # Start the Telemetry supervisor
-      RetroWeb.Telemetry,
+      RetrospectivesWeb.Telemetry,
       # Start the PubSub system
-      {Phoenix.PubSub, name: Retro.PubSub},
+      {Phoenix.PubSub, name: Retrospectives.PubSub},
       # Start the Endpoint (http/https)
-      RetroWeb.Endpoint
-      # Start a worker by calling: Retro.Worker.start_link(arg)
-      # {Retro.Worker, arg}
+      RetrospectivesWeb.Endpoint
+      # Start a worker by calling: Retrospectives.Worker.start_link(arg)
+      # {Retrospectives.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
-    opts = [strategy: :one_for_one, name: Retro.Supervisor]
+    opts = [strategy: :one_for_one, name: Retrospectives.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    RetroWeb.Endpoint.config_change(changed, removed)
+    RetrospectivesWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end

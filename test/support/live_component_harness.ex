@@ -1,6 +1,6 @@
-defmodule RetroWeb.Test.LiveComponentHarness do
+defmodule RetrospectivesWeb.Test.LiveComponentHarness do
   @moduledoc false
-  use RetroWeb, :live_view
+  use RetrospectivesWeb, :live_view
 
   @impl true
   def mount(_params, session, socket) do

@@ -1,10 +1,10 @@
-defmodule RetroWeb.TopicItemLiveTest do
-  use RetroWeb.ConnCase
+defmodule RetrospectivesWeb.TopicItemLiveTest do
+  use RetrospectivesWeb.ConnCase
 
   import Phoenix.LiveViewTest
 
-  alias RetroWeb.Test.LiveComponentHarness
-  alias Retro.Topics
+  alias RetrospectivesWeb.Test.LiveComponentHarness
+  alias Retrospectives.Topics
 
   describe "render" do
     test "when given a topic it renders that topic", %{conn: conn} do
@@ -16,7 +16,7 @@ defmodule RetroWeb.TopicItemLiveTest do
       {:ok, _view, html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
-            "component" => RetroWeb.TopicItem,
+            "component" => RetrospectivesWeb.TopicItem,
             "component_assigns" => %{
               "id" => "topic-#{topic.id}",
               "topic" => topic

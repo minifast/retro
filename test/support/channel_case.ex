@@ -1,4 +1,4 @@
-defmodule RetroWeb.ChannelCase do
+defmodule RetrospectivesWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule RetroWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use RetroWeb.ChannelCase, async: true`, although
+  by setting `use RetrospectivesWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,18 +21,18 @@ defmodule RetroWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import RetroWeb.ChannelCase
+      import RetrospectivesWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint RetroWeb.Endpoint
+      @endpoint RetrospectivesWeb.Endpoint
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Retro.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Retrospectives.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Retro.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Retrospectives.Repo, {:shared, self()})
     end
 
     :ok

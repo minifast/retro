@@ -1,9 +1,9 @@
-defmodule RetroWeb.RetroBoardLiveTest do
-  use RetroWeb.ConnCase
+defmodule RetrospectivesWeb.RetroBoardLiveTest do
+  use RetrospectivesWeb.ConnCase
 
   import Phoenix.LiveViewTest
 
-  alias Retro.RetroBoards
+  alias Retrospectives.RetroBoards
 
   @create_attrs %{name: "some name"}
   @update_attrs %{name: "some updated name"}

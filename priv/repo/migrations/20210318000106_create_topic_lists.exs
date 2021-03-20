@@ -1,8 +1,8 @@
-defmodule Retro.Repo.Migrations.CreateTopicLists do
+defmodule Retrospectives.Repo.Migrations.CreateTopicLists do
   use Ecto.Migration
 
   def change do
-    Retro.Repo.delete_all(Retro.Topics.Topic)
+    Retrospectives.Repo.delete_all(Retrospectives.Topics.Topic)
 
     create table(:topic_lists) do
       add :name, :string, null: false

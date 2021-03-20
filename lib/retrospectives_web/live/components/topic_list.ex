@@ -1,6 +1,6 @@
-defmodule RetroWeb.TopicList do
+defmodule RetrospectivesWeb.TopicList do
   @moduledoc false
-  use RetroWeb, :live_component
+  use RetrospectivesWeb, :live_component
 
   @impl true
   def render(assigns) do
@@ -27,13 +27,13 @@ defmodule RetroWeb.TopicList do
       </article>
 
       <section>
-        <%= live_component @socket, RetroWeb.TopicForm, id: "topic-form-#{@topic_list.id}", topic_list_id: @topic_list.id %>
+        <%= live_component @socket, RetrospectivesWeb.TopicForm, id: "topic-form-#{@topic_list.id}", topic_list_id: @topic_list.id %>
       </section>
 
       <section>
         <ul class="topic-items">
           <%= for topic <- @topic_list.topics do %>
-            <li class="topic-item"><%= live_component socket, RetroWeb.TopicItem, topic: topic %></li>
+            <li class="topic-item"><%= live_component socket, RetrospectivesWeb.TopicItem, topic: topic %></li>
           <% end %>
         </ul>
       </section>

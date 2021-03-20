@@ -7,15 +7,15 @@
 # General application configuration
 use Mix.Config
 
-config :retro,
-  ecto_repos: [Retro.Repo]
+config :retrospectives,
+  ecto_repos: [Retrospectives.Repo]
 
 # Configures the endpoint
-config :retro, RetroWeb.Endpoint,
+config :retrospectives, RetrospectivesWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "goX9YLcTO9hO/HqRjH0hrckXwf5rqF1rnwHn1whzfL8oOmjEbBEyckVQ5e9eIubF",
-  render_errors: [view: RetroWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Retro.PubSub,
+  render_errors: [view: RetrospectivesWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Retrospectives.PubSub,
   live_view: [signing_salt: "9TWAee5m"]
 
 # Configures Elixir's Logger

@@ -5,18 +5,18 @@ use Mix.Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :retro, Retro.Repo,
+config :retrospectives, Retrospectives.Repo,
   username: "postgres",
   password: "postgres",
   database: "retro_test#{System.get_env("MIX_TEST_PARTITION")}",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :retro, :sql_sandbox, true
+config :retrospectives, :sql_sandbox, true
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :retro, RetroWeb.Endpoint,
+config :retrospectives, RetrospectivesWeb.Endpoint,
   http: [port: 4002],
   server: true
 
@@ -24,6 +24,6 @@ config :retro, RetroWeb.Endpoint,
 config :logger, level: :warn
 
 config :wallaby,
-  otp_app: :retro,
+  otp_app: :retrospectives,
   driver: Wallaby.Chrome,
   screenshot_on_failure: true

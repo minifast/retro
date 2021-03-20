@@ -1,6 +1,6 @@
 defmodule Retro.RetroBoards.RetroBoardTest do
-  use Retro.DataCase
-  alias Retro.RetroBoards.RetroBoard
+  use Retrospectives.DataCase
+  alias Retrospectives.RetroBoards.RetroBoard
 
   describe "schema/2" do
     @retro_board %RetroBoard{}

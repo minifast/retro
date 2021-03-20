@@ -1,4 +1,4 @@
-# Retro
+# Retrospectives
 
 To start your Phoenix server:
 

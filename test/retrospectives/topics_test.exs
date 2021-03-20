@@ -1,9 +1,9 @@
-defmodule Retro.TopicsTest do
-  use Retro.DataCase
+defmodule Retrospectives.TopicsTest do
+  use Retrospectives.DataCase
 
-  alias Retro.Topics
-  alias Retro.Topics.Topic
-  alias Retro.Topics.TopicList
+  alias Retrospectives.Topics
+  alias Retrospectives.Topics.Topic
+  alias Retrospectives.Topics.TopicList
 
   def topic_list_fixture(attrs \\ %{}) do
     {:ok, topic_list} =
@@ -29,7 +29,7 @@ defmodule Retro.TopicsTest do
     @invalid_attrs %{name: nil}
 
     test "list_topic_lists/0 returns all topic_lists" do
-      topic_list = topic_list_fixture() |> Retro.Repo.preload(:topics)
+      topic_list = topic_list_fixture() |> Retrospectives.Repo.preload(:topics)
       assert Topics.list_topic_lists() == [topic_list]
     end
 

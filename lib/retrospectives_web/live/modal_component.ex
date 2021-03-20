@@ -1,6 +1,6 @@
-defmodule RetroWeb.ModalComponent do
+defmodule RetrospectivesWeb.ModalComponent do
   @moduledoc false
-  use RetroWeb, :live_component
+  use RetrospectivesWeb, :live_component
 
   @impl true
   def render(assigns) do

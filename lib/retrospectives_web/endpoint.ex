@@ -1,7 +1,7 @@
-defmodule RetroWeb.Endpoint do
-  use Phoenix.Endpoint, otp_app: :retro
+defmodule RetrospectivesWeb.Endpoint do
+  use Phoenix.Endpoint, otp_app: :retrospectives
 
-  if Application.get_env(:retro, :sql_sandbox) do
+  if Application.get_env(:retrospectives, :sql_sandbox) do
     plug Phoenix.Ecto.SQL.Sandbox
   end
 
@@ -14,7 +14,7 @@ defmodule RetroWeb.Endpoint do
     signing_salt: "lmGGF/E1"
   ]
 
-  socket "/socket", RetroWeb.UserSocket,
+  socket "/socket", RetrospectivesWeb.UserSocket,
     websocket: [timeout: 45_000],
     longpoll: false
 
@@ -26,7 +26,7 @@ defmodule RetroWeb.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/",
-    from: :retro,
+    from: :retrospectives,
     gzip: false,
     only: ~w(css fonts images js favicon.ico robots.txt)
 
@@ -36,7 +36,7 @@ defmodule RetroWeb.Endpoint do
     socket "/phoenix/live_reload/socket", Phoenix.LiveReloader.Socket
     plug Phoenix.LiveReloader
     plug Phoenix.CodeReloader
-    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :retro
+    plug Phoenix.Ecto.CheckRepoStatus, otp_app: :retrospectives
   end
 
   plug Phoenix.LiveDashboard.RequestLogger,
@@ -54,5 +54,5 @@ defmodule RetroWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug RetroWeb.Router
+  plug RetrospectivesWeb.Router
 end

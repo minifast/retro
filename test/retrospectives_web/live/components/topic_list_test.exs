@@ -1,9 +1,9 @@
-defmodule RetroWeb.TopicListLiveTest do
-  use RetroWeb.ConnCase
+defmodule RetrospectivesWeb.TopicListLiveTest do
+  use RetrospectivesWeb.ConnCase
   import Phoenix.LiveViewTest
-  alias RetroWeb.Test.LiveComponentHarness
-  alias Retro.Topics
-  alias Retro.Repo
+  alias RetrospectivesWeb.Test.LiveComponentHarness
+  alias Retrospectives.Topics
+  alias Retrospectives.Repo
 
   describe "render" do
     test "it renders a topic list", %{conn: conn} do
@@ -14,7 +14,7 @@ defmodule RetroWeb.TopicListLiveTest do
       {:ok, _view, html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
-            "component" => RetroWeb.TopicList,
+            "component" => RetrospectivesWeb.TopicList,
             "component_assigns" => %{
               "id" => "topic-list-#{topic_list.id}",
               "topic_list" => topic_list

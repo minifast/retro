@@ -1,7 +1,7 @@
 <h1>Retro Boards</h1>
 
 <%= if @live_action in [:edit] do %>
-  <%= live_modal RetroWeb.RetroBoardLive.FormComponent,
+  <%= live_modal RetrospectivesWeb.RetroBoardLive.FormComponent,
     id: @retro_board.id,
     title: @page_title,
     action: @live_action,
@@ -11,8 +11,8 @@
     return_to: Routes.retro_board_index_path(@socket, :index) %>
 <% end %>
 
-<%= live_component @socket, RetroWeb.RetroBoardLive.FormComponent,
-  id: :retro_board,
+<%= live_component @socket, RetrospectivesWeb.RetroBoardLive.FormComponent,
+  id: :retrospectives_board,
   title: @page_title,
   action: :new,
   retro_board: @retro_board,
@@ -30,7 +30,7 @@
   <tbody>
     <div id="retro-boards">
       <%= for retro_board <- @retro_boards do %>
-        <%= live_component @socket, RetroWeb.RetroBoardLive.RetroBoardComponent, id: retro_board.id, retro_board: retro_board %>
+        <%= live_component @socket, RetrospectivesWeb.RetroBoardLive.RetroBoardComponent, id: retro_board.id, retro_board: retro_board %>
       <% end %>
     </div>
   </tbody>

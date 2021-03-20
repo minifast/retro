@@ -1,8 +1,8 @@
-defmodule RetroWeb.RetroBoardLive.Index do
+defmodule RetrospectivesWeb.RetroBoardLive.Index do
   @moduledoc false
-  use RetroWeb, :live_view
+  use RetrospectivesWeb, :live_view
 
-  alias Retro.RetroBoards
+  alias Retrospectives.RetroBoards
 
   @impl true
   def mount(_params, _session, socket) do

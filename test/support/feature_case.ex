@@ -1,4 +1,4 @@
-defmodule RetroWeb.FeatureCase do
+defmodule RetrospectivesWeb.FeatureCase do
   @moduledoc false
 
   use ExUnit.CaseTemplate
@@ -8,7 +8,7 @@ defmodule RetroWeb.FeatureCase do
       use ExUnit.Case, async: false
       use Wallaby.Feature
       import Wallaby.Query
-      alias Retro.Repo
+      alias Retrospectives.Repo
     end
   end
 end

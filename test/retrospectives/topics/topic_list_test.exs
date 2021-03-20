@@ -1,6 +1,6 @@
-defmodule Retro.Topics.TopicListTest do
-  use Retro.DataCase
-  alias Retro.Topics.TopicList
+defmodule Retrospectives.Topics.TopicListTest do
+  use Retrospectives.DataCase
+  alias Retrospectives.Topics.TopicList
 
   describe "schema/2" do
     @topic_list %TopicList{}

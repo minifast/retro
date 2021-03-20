@@ -1,5 +1,5 @@
-defmodule RetroWeb.LayoutViewTest do
-  use RetroWeb.ConnCase, async: true
+defmodule RetrospectivesWeb.LayoutViewTest do
+  use RetrospectivesWeb.ConnCase, async: true
 
   # When testing helpers, you may want to import Phoenix.HTML and
   # use functions such as safe_to_string() to convert the helper

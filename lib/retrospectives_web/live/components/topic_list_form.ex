@@ -1,8 +1,8 @@
-defmodule RetroWeb.TopicListForm do
+defmodule RetrospectivesWeb.TopicListForm do
   @moduledoc false
-  use RetroWeb, :live_component
-  alias Retro.Topics
-  alias Retro.Topics.TopicList
+  use RetrospectivesWeb, :live_component
+  alias Retrospectives.Topics
+  alias Retrospectives.Topics.TopicList
 
   @impl true
   def mount(socket) do

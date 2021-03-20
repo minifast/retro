@@ -1,15 +1,15 @@
-defmodule RetroWeb.TopicListFormLiveTest do
-  use RetroWeb.ConnCase
+defmodule RetrospectivesWeb.TopicListFormLiveTest do
+  use RetrospectivesWeb.ConnCase
   import Phoenix.LiveViewTest
-  alias RetroWeb.Test.LiveComponentHarness
-  alias Retro.Topics
+  alias RetrospectivesWeb.Test.LiveComponentHarness
+  alias Retrospectives.Topics
 
   describe "TopicListForm" do
     test "when submitting an invalid changest displays an error message", %{conn: conn} do
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
-            "component" => RetroWeb.TopicListForm,
+            "component" => RetrospectivesWeb.TopicListForm,
             "component_assigns" => %{
               "id" => "topic-list-form-1"
             }
@@ -25,7 +25,7 @@ defmodule RetroWeb.TopicListFormLiveTest do
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
           session: %{
-            "component" => RetroWeb.TopicListForm,
+            "component" => RetrospectivesWeb.TopicListForm,
             "component_assigns" => %{
               "id" => "topic-list-form-1"
             }

@@ -1,10 +1,10 @@
-defmodule Retro.Topics do
+defmodule Retrospectives.Topics do
   @moduledoc false
   import Ecto.Query, warn: false
 
-  alias Retro.Repo
-  alias Retro.Topics.Topic
-  alias Retro.Topics.TopicList
+  alias Retrospectives.Repo
+  alias Retrospectives.Topics.Topic
+  alias Retrospectives.Topics.TopicList
 
   def list_topic_lists do
     TopicList
@@ -73,14 +73,14 @@ defmodule Retro.Topics do
   end
 
   def subscribe_topic_lists do
-    Phoenix.PubSub.subscribe(Retro.PubSub, "topic_lists")
+    Phoenix.PubSub.subscribe(Retrospectives.PubSub, "topic_lists")
   end
 
   defp broadcast({:error, _reason} = error, _event), do: error
 
   defp broadcast({:ok, topic_list}, event) do
     Phoenix.PubSub.broadcast(
-      Retro.PubSub,
+      Retrospectives.PubSub,
       "topic_lists",
       {event, topic_list}
     )

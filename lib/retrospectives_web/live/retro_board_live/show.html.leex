@@ -1,7 +1,7 @@
 <h1><%= @retro_board.name %></h1>
 
 <%= if @live_action in [:edit] do %>
-  <%= live_modal RetroWeb.RetroBoardLive.FormComponent,
+  <%= live_modal RetrospectivesWeb.RetroBoardLive.FormComponent,
     id: @retro_board.id,
     title: @page_title,
     action: @live_action,

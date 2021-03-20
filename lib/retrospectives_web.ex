@@ -1,12 +1,12 @@
-defmodule RetroWeb do
+defmodule RetrospectivesWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use RetroWeb, :controller
-      use RetroWeb, :view
+      use RetrospectivesWeb, :controller
+      use RetrospectivesWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,19 +19,19 @@ defmodule RetroWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: RetroWeb
+      use Phoenix.Controller, namespace: RetrospectivesWeb
 
       import Plug.Conn
-      import RetroWeb.Gettext
-      alias RetroWeb.Router.Helpers, as: Routes
+      import RetrospectivesWeb.Gettext
+      alias RetrospectivesWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/retro_web/templates",
-        namespace: RetroWeb
+        root: "lib/retrospectives_web/templates",
+        namespace: RetrospectivesWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -45,7 +45,7 @@ defmodule RetroWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {RetroWeb.LayoutView, "live.html"}
+        layout: {RetrospectivesWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -72,7 +72,7 @@ defmodule RetroWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import RetroWeb.Gettext
+      import RetrospectivesWeb.Gettext
     end
   end
 
@@ -83,14 +83,14 @@ defmodule RetroWeb do
 
       # Import LiveView helpers (live_render, live_component, live_patch, etc)
       import Phoenix.LiveView.Helpers
-      import RetroWeb.LiveHelpers
+      import RetrospectivesWeb.LiveHelpers
 
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import RetroWeb.ErrorHelpers
-      import RetroWeb.Gettext
-      alias RetroWeb.Router.Helpers, as: Routes
+      import RetrospectivesWeb.ErrorHelpers
+      import RetrospectivesWeb.Gettext
+      alias RetrospectivesWeb.Router.Helpers, as: Routes
     end
   end
 

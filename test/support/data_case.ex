@@ -1,4 +1,4 @@
-defmodule Retro.DataCase do
+defmodule Retrospectives.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -10,7 +10,7 @@ defmodule Retro.DataCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use Retro.DataCase, async: true`, although
+  by setting `use Retrospectives.DataCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -18,22 +18,22 @@ defmodule Retro.DataCase do
 
   using do
     quote do
-      alias Retro.Repo
+      alias Retrospectives.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import Retro.DataCase
+      import Retrospectives.DataCase
     end
   end
 
   setup tags do
     :timer.sleep(100)
 
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Retro.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Retrospectives.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(Retro.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Retrospectives.Repo, {:shared, self()})
     end
 
     :ok

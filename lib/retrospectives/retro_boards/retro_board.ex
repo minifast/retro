@@ -1,4 +1,4 @@
-defmodule Retro.RetroBoards.RetroBoard do
+defmodule Retrospectives.RetroBoards.RetroBoard do
   @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
