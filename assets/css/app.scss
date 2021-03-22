@@ -94,6 +94,7 @@
   display: flex;
 
   &__item {
+    flex: 1 1 100%;
     background: #eee;
     border-radius: 6px;
     border-bottom: 1px solid #c7c7c7;
