@@ -28,7 +28,7 @@ defmodule RetrospectivesWeb.UsersHaveARetro do
     session
     |> assert_has(Query.text("as were the donuts!"))
     |> accept_confirm(fn s ->
-      click(s, Query.link("Delete Topic", count: 2, at: 0))
+      click(s, Query.link("Delete Topic", count: 2, at: 1))
     end)
 
     session

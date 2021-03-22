@@ -9,7 +9,7 @@ defmodule Retrospectives.Topics do
   def list_topic_lists do
     TopicList
     |> Repo.all()
-    |> Repo.preload(:topics)
+    |> Repo.preload([topics: (from t in Topic, order_by: fragment("lower(?)", t.description))])
   end
 
   def get_topic_list!(id), do: Repo.get!(TopicList, id)
