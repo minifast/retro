@@ -1,6 +1,5 @@
 /* This file is for your main application css. */
 @import "./phoenix.css";
-@import "../node_modules/nprogress/nprogress.css";
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
@@ -90,27 +89,42 @@
   margin: -1rem 0 1rem;
 }
 
+.fluid-container {
+  margin: 0 auto;
+  padding: 0 2.0rem;
+  position: relative;
+  width: 100%;
+}
+
 .topic-lists {
-  display: flex;
 
   &__item {
-    flex: 1 1 100%;
     background: #eee;
     border-radius: 6px;
     border-bottom: 1px solid #c7c7c7;
+    margin-bottom: 2rem;
   }
 
-  &__item:not(:first-child) { margin-left: 1rem; }
+  @media (min-width: 40.0rem) {
+    display: flex;
+
+    &__item {
+      flex: 1 1 100%;
+      margin-bottom: 0;
+    }
+
+    &__item:not(:first-child) { margin-left: 1rem; }
+  }
 }
 
 .topic-list {
   display: flex;
   padding: 1rem;
-  margin-bottom: 1rem;
 
   &__name {
     flex-grow: 2;
     font-weight: bold;
+    margin-bottom: 0;
   }
 
   &__delete { padding-left: 2rem; }
@@ -136,7 +150,9 @@
 .topic-list-form {
   display: flex;
   align-items: baseline;
-  margin-bottom: 1rem;
+  max-width: 80rem;
+  margin: 1rem;
+
   &__label { white-space: nowrap; }
 
   &__field {

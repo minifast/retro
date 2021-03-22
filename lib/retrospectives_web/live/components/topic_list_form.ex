@@ -17,9 +17,7 @@ defmodule RetrospectivesWeb.TopicListForm do
       phx_submit: :add_topic_list,
       phx_target: @myself %>
 
-      <section>
-        <%= label f, :name, "List Name" %>
-      </section>
+      <%= label f, :name, "List Name", class: "topic-list-form__label" %>
 
       <section class="topic-list-form__field">
         <%= text_input f, :name %>

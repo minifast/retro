@@ -1,11 +1,11 @@
-<section>
+<section class="fluid-container">
   <%= live_component @socket, RetrospectivesWeb.TopicListForm, id: "topic-list-form" %>
-</section>
 
-<section>
   <section class="topic-lists">
     <%= for topic_list <- @topic_lists do %>
-      <section class="topic-lists__item"><%= live_component @socket, RetrospectivesWeb.TopicList, topic_list: topic_list %></section>
+      <section class="topic-lists__item">
+        <%= live_component @socket, RetrospectivesWeb.TopicList, topic_list: topic_list %>
+      </section>
     <% end %>
   </section>
 </section>
