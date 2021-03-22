@@ -60,7 +60,5 @@ defmodule RetrospectivesWeb.PageLive do
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :topic, changeset)}
     end
-
-    {:noreply, socket}
   end
 end

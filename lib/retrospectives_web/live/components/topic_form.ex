@@ -33,10 +33,10 @@ defmodule RetrospectivesWeb.TopicForm do
            description: topic_params["description"],
            topic_list: topic_list
          }) do
-      {:ok, _topic} ->
-        {:noreply,
-         socket
-         |> push_redirect(to: Routes.page_path(socket, :index))}
+      {:ok, topic} ->
+        # we need to assign the topic twice to re-render the component and clear the description
+        socket = assign(socket, :topic, topic)
+        {:noreply, assign(socket, :topic, Topics.change_topic(%Topic{}))}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :topic, changeset)}
