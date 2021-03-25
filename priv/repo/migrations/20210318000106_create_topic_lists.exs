@@ -1,8 +1,9 @@
 defmodule Retrospectives.Repo.Migrations.CreateTopicLists do
   use Ecto.Migration
 
-  def change do
-    Retrospectives.Repo.delete_all(Retrospectives.Topics.Topic)
+  def up do
+    execute "DELETE FROM topics"
+    flush()
 
     create table(:topic_lists) do
       add :name, :string, null: false
@@ -17,5 +18,17 @@ defmodule Retrospectives.Repo.Migrations.CreateTopicLists do
     end
 
     create index(:topics, [:description, :topic_list_id])
+  end
+
+  def down do
+    drop index(:topics, [:description, :topic_list_id])
+
+    alter table(:topics) do
+      remove :topic_list_id
+    end
+
+    drop index(:topic_lists, [:name])
+
+    drop table(:topic_lists)
   end
 end
