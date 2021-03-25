@@ -4,14 +4,15 @@ defmodule RetrospectivesWeb.TopicItemLiveTest do
   import Phoenix.LiveViewTest
 
   alias RetrospectivesWeb.Test.LiveComponentHarness
-  alias Retrospectives.Topics
+  alias Retrospectives.Retros
 
   describe "render" do
     test "when given a topic it renders that topic", %{conn: conn} do
-      {:ok, topic_list} = Topics.create_topic_list(%{name: "some list"})
+      {:ok, retro} = Retros.create_retro()
+      {:ok, topic_list} = Retros.create_topic_list(%{name: "some list", retro: retro})
 
       {:ok, topic} =
-        Topics.create_topic(%{description: "some description", topic_list: topic_list})
+        Retros.create_topic(%{description: "some description", topic_list: topic_list})
 
       {:ok, _view, html} =
         live_isolated(conn, LiveComponentHarness,

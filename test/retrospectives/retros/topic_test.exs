@@ -1,7 +1,7 @@
-defmodule Retrospectives.Topics.TopicTest do
+defmodule Retrospectives.Retros.TopicTest do
   use Retrospectives.DataCase
-  alias Retrospectives.Topics.Topic
-  alias Retrospectives.Topics.TopicList
+  alias Retrospectives.Retros.Topic
+  alias Retrospectives.Retros.TopicList
 
   describe "schema/2" do
     @topic %Topic{}
@@ -16,7 +16,7 @@ defmodule Retrospectives.Topics.TopicTest do
   end
 
   describe "changeset/2" do
-    @topic_list %TopicList{name: 'Cool List'}
+    @topic_list %TopicList{name: "Cool List"}
 
     test "sets the description" do
       changeset = Topic.changeset(%Topic{}, %{description: "Happy", topic_list: @topic_list})
@@ -25,7 +25,14 @@ defmodule Retrospectives.Topics.TopicTest do
 
     test "sets the topic list" do
       changeset = Topic.changeset(%Topic{}, %{description: "Happy", topic_list: @topic_list})
-      assert changeset.changes.topic_list.data.id == @topic_list.id
+      assert changeset.changes.topic_list.data.name == "Cool List"
+    end
+
+    test "sets the topic list changeset" do
+      changeset = Topic.changeset(%Topic{}, %{description: "Happy", topic_list: @topic_list})
+      assert changeset.changes.topic_list.action == :insert
+      assert changeset.changes.topic_list.changes == %{}
+      assert changeset.changes.topic_list.valid? == true
     end
 
     test "returns no errors when attributes are valid" do

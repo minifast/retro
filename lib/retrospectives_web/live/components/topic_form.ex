@@ -1,12 +1,12 @@
 defmodule RetrospectivesWeb.TopicForm do
   @moduledoc false
   use RetrospectivesWeb, :live_component
-  alias Retrospectives.Topics
-  alias Retrospectives.Topics.Topic
+  alias Retrospectives.Retros
+  alias Retrospectives.Retros.Topic
 
   @impl true
   def mount(socket) do
-    {:ok, assign(socket, :topic, Topics.change_topic(%Topic{}))}
+    {:ok, assign(socket, :topic, Retros.change_topic(%Topic{}))}
   end
 
   @impl true
@@ -27,16 +27,19 @@ defmodule RetrospectivesWeb.TopicForm do
 
   @impl true
   def handle_event("add_topic", %{"topic" => topic_params}, socket) do
-    topic_list = Topics.get_topic_list(topic_params["topic_list_id"])
+    topic_list = Retros.get_topic_list(topic_params["topic_list_id"])
 
-    case Topics.create_topic(%{
+    case Retros.create_topic(%{
            description: topic_params["description"],
            topic_list: topic_list
          }) do
       {:ok, topic} ->
-        # we need to assign the topic twice to re-render the component and clear the description
-        socket = assign(socket, :topic, topic)
-        {:noreply, assign(socket, :topic, Topics.change_topic(%Topic{}))}
+        socket =
+          socket
+          |> assign(:topic, topic)
+          |> assign(:topic, Retros.change_topic(%Topic{}))
+
+        {:noreply, socket}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, :topic, changeset)}

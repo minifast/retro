@@ -17,7 +17,9 @@ defmodule RetrospectivesWeb.Router do
   scope "/", RetrospectivesWeb do
     pipe_through :browser
 
-    live "/", PageLive, :index
+    live "/", RetrosLive.Index, :index
+    live "/retros", RetrosLive.Index, :index
+    live "/retros/:id", RetrosLive.Show, :show
   end
 
   # Other scopes may use custom stacks.

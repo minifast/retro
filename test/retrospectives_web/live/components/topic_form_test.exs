@@ -2,13 +2,14 @@ defmodule RetrospectivesWeb.TopicFormLiveTest do
   use RetrospectivesWeb.ConnCase
   import Phoenix.LiveViewTest
   alias RetrospectivesWeb.Test.LiveComponentHarness
-  alias Retrospectives.Topics
+  alias Retrospectives.Retros
 
   describe "TopicForm" do
     test "when submitting an invalid changeset with no description displays an error message", %{
       conn: conn
     } do
-      {:ok, topic_list} = Topics.create_topic_list(%{name: "some list"})
+      {:ok, retro} = Retros.create_retro()
+      {:ok, topic_list} = Retros.create_topic_list(%{name: "some list", retro: retro})
 
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
@@ -53,7 +54,8 @@ defmodule RetrospectivesWeb.TopicFormLiveTest do
     end
 
     test "when submitting a valid changest adds a new topic", %{conn: conn} do
-      {:ok, topic_list} = Topics.create_topic_list(%{name: "some list"})
+      {:ok, retro} = Retros.create_retro()
+      {:ok, topic_list} = Retros.create_topic_list(%{name: "some list", retro: retro})
 
       {:ok, view, _html} =
         live_isolated(conn, LiveComponentHarness,
@@ -72,7 +74,7 @@ defmodule RetrospectivesWeb.TopicFormLiveTest do
                "topic" => %{"description" => "sweet!", topic_list_id: topic_list.id}
              })
 
-      new_topic = Topics.list_topics() |> List.last()
+      new_topic = Retros.list_topics() |> List.last()
 
       assert new_topic.description == "sweet!"
     end

@@ -1,0 +1,26 @@
+<section>
+  <h1>Retros</h1>
+
+  <section class="retros__add">
+    <%=
+      link(
+        gettext("Add Retro"),
+        to: "#",
+        phx_click: :add_retro
+      )
+    %>
+  </section>
+  <hr>
+  <section class="retros__list">
+    <ul>
+      <%= for retro <- @retros do %>
+        <li class="retros__item">
+          <section>
+            <%= live_patch "Retro #{retro.id}", to: Routes.retros_show_path(@socket, :show, retro.id) %>
+            <label>Created at:</label><%= "#{retro.inserted_at.month}/#{retro.inserted_at.day}/#{retro.inserted_at.year} at #{retro.inserted_at.hour}:#{retro.inserted_at.minute}" %>
+          </section>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+</section>

@@ -1,0 +1,19 @@
+<section class="fluid-container">
+  <article class="retro">
+    <section class="retro__id">
+      <h2>Retro <%= @retro.id %></h2>
+    </section>
+    <section class="retro__inserted-at"><label>Created at:</label><%= "#{@retro.inserted_at.month}/#{@retro.inserted_at.day}/#{@retro.inserted_at.year} at #{@retro.inserted_at.hour}:#{@retro.inserted_at.minute}" %></section>
+
+  </article>
+
+  <%= live_component @socket, RetrospectivesWeb.TopicListForm, id: "topic-list-form", retro_id: @retro.id %>
+
+  <section class="topic-lists">
+    <%= for topic_list <- @retro.topic_lists do %>
+      <section class="topic-lists__item">
+        <%= live_component @socket, RetrospectivesWeb.TopicList, topic_list: topic_list %>
+      </section>
+    <% end %>
+  </section>
+</section>

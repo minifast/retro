@@ -1,11 +1,11 @@
-defmodule Retrospectives.Topics.Topic do
+defmodule Retrospectives.Retros.Topic do
   @moduledoc false
   use Ecto.Schema
   import Ecto.Changeset
 
   schema "topics" do
     field :description, :string
-    belongs_to :topic_list, Retrospectives.Topics.TopicList, on_replace: :nilify
+    belongs_to :topic_list, Retrospectives.Retros.TopicList
 
     timestamps()
   end
